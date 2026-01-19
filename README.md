@@ -1,6 +1,6 @@
 # Mini Trading Terminal - Frontend
 
-本项目是柜台交易系统的模拟前端部分，采用 Vue 3 + TypeScript + Vite 架构，旨在模拟高性能、高可靠性的金融交易界面。
+前端部分，采用 Vue 3 + TypeScript + Vite 架构，旨在模拟高性能、高可靠性的金融交易界面。
 
 ## 1. 技术栈说明
 

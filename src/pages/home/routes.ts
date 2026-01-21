@@ -7,7 +7,7 @@ export const homeRoutes = [
     path: "news-report",
     name: "news-report",
     label: "新闻报告",
-    component: () => import("@/pages/home/components/news-report.vue"),
+    component: () => import("@/pages/home/components/news-report/index.vue"),
   },
   {
     path: "market-analysis",

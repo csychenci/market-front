@@ -1,0 +1,31 @@
+.news-report-filter {
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-bottom: 1px solid #e5e5ea;
+  .news-report-filter-item {
+    display: flex;
+    gap: 10px;
+    .news-report-filter--search {
+      width: 240px;
+      & > .el-input__wrapper {
+        padding: 6px 12px;
+        color: #aeaeb2;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        input {
+          --el-input-inner-height: 18px;
+        }
+      }
+    }
+    .news-report-filter--date {
+      // height: 30px;
+      // input {
+      //   height: 28px;
+      //   line-height: 28px;
+      // }
+    }
+  }
+}

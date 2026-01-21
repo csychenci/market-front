@@ -3,4 +3,27 @@
   height: 100%;
   display: grid;
   grid-template-columns: 200px 1fr;
+  .home-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .home-container--header {
+      padding: 13px 16px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      background: #fff;
+      box-shadow: 0 2px 8px 0 rgba(31, 36, 41, 0.04);
+      .home-container--header-icon {
+        width: 20px;
+        height: 20px;
+      }
+      & > span {
+        color: #333;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+      }
+    }
+  }
 }

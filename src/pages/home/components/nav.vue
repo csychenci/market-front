@@ -20,14 +20,9 @@ function toggle() {
 
     <li class="nav-item">
       <div class="nav-item-inner">
-      <img class="icon" src="@/assets/Frame.svg" />
-      <span>市场洞察</span>
-      <img
-        class="icon icon-right"
-        :class="{ rotated: open }"
-        src="@/assets/Frame1058.png"
-        @click.stop="toggle"
-      />
+        <img class="icon" src="@/assets/Frame.svg" />
+        <span>市场洞察</span>
+        <img class="icon icon-right" :class="{ rotated: open }" src="@/assets/Frame1058.png" @click.stop="toggle" />
       </div>
     </li>
 
@@ -45,25 +40,25 @@ function toggle() {
 
 <style scoped lang="less">
 .home-nav {
-  position: relative;  
+  position: relative;
   border-right: 0.5px solid #000;
   background-color: #06253A;
-  width: 240px;
+  width: 200px;
   --text-left: 44px;
+
+  .nav-header {
+      padding: 18px 20px 12px;
+  
+      img {
+        display: block;
+        width: 100%;
+        max-width: 180px;
+        height: auto;
+      }
+    }
 }
 
-.nav-header {
-  padding: 18px 20px 12px; 
-}
-
-.nav-header img {
-  display: block;
-  width: 100%;
-  max-width: 180px;
-  height: auto;
-}
-
-.nav-item {         
+.nav-item {
   padding: 8px 20px;
   color: #fff;
 }
@@ -86,7 +81,7 @@ function toggle() {
   pointer-events: none;
 }
 
-.nav-item-inner > * {
+.nav-item-inner>* {
   position: relative;
   z-index: 1;
 }
@@ -117,7 +112,7 @@ function toggle() {
 }
 
 .sub-list {
-  margin-top: -10px;  
+  margin-top: -10px;
 }
 
 .sub-item {
@@ -134,5 +129,4 @@ function toggle() {
 .sub-link:hover {
   color: #fff;
 }
-
 </style>

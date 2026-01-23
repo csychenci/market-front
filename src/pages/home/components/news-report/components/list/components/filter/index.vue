@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Search as SearchIcon } from "lucide-vue-next"
 import { ref } from 'vue';
-import { dataOptions, typeOptions } from "./constants";
+import { dataOptions, typeOptions, sourceOptions,motionOptions } from "./constants";
 
 defineOptions({
   name: "NewsReportFilter"
@@ -11,6 +11,17 @@ const searchValue = ref("")
 const dateRange = ref("")
 const dataMode = ref("")
 const typeMode = ref("")
+const sourceMode = ref("")
+const motionMode = ref("")
+
+function resetFilter() {
+  searchValue.value = ""
+  dateRange.value = ""
+  dataMode.value = ""
+  typeMode.value = ""
+  sourceMode.value = ""
+  motionMode.value = ""
+}
 </script>
 <template>
   <div class="news-report-filter">
@@ -27,6 +38,13 @@ const typeMode = ref("")
       <el-select v-model="typeMode" placeholder="类型: 全部" style="width: 240px">
         <el-option v-for="item in typeOptions" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
+      <el-select v-model="sourceMode" placeholder="数据源: 全部" style="width: 240px">
+        <el-option v-for="item in sourceOptions" :key="item.value" :label="item.label" :value="item.value" />
+      </el-select>
+      <el-select v-model="motionMode" placeholder="数据源: 全部" style="width: 240px">
+        <el-option v-for="item in motionOptions" :key="item.value" :label="item.label" :value="item.value" />
+      </el-select>
+      <div @click="resetFilter">清空筛选</div>
     </div>
   </div>
 </template>

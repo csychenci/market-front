@@ -15,7 +15,9 @@ declare module 'vue' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElOption: typeof import('element-plus/es')['ElOption']
     ElSelect: typeof import('element-plus/es')['ElSelect']
+    MarketCard: typeof import('./src/components/market-card/index.vue')['default']
     MarketView: typeof import('./src/components/market-view/index.vue')['default']
+    NewsCard: typeof import('./src/components/news-card/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

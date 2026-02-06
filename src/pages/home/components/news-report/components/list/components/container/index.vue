@@ -9,7 +9,8 @@ const props = defineProps<NewsReportContainerProps>()
 <template>
   <div class="news-report-container">
     <div class="news-report-scroll-area">
-      <NewsReportItem v-for="item in props.items" :key="item.id" :item="item" />
+      <NewsReportItem :selected-item="props.selectedItem" v-for="item in props.items" :key="item.id" :item="item"
+        :on-select="props.onSelect" />
     </div>
   </div>
 </template>

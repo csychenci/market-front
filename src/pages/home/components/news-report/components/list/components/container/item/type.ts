@@ -1,5 +1,5 @@
 export type NewsReportItemType = {
-  id: string
+  id: number
   title: string;
   tags: string[];
   content: string;

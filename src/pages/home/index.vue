@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import HomeNav from './components/nav.vue'
 import { List as ListIcon } from "lucide-vue-next"
 

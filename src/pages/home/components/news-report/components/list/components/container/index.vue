@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NewsReportItem from "./item/index.vue"
-import { NewsReportContainerProps } from "./type";
+import type { NewsReportContainerProps } from "./type";
 defineOptions({
   name: "NewsReportContainer",
 })

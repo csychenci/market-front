@@ -13,6 +13,6 @@ export const homeRoutes = [
     path: "market-analysis",
     name: "market-analysis",
     label: "市场分析",
-    component: () => import("@/pages/home/components/market-analysis.vue"),
+    component: () => import("@/pages/home/components/market-analysis/index.vue"),
   }
 ]

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import dayjs from "dayjs"
-import { NewsReportItemProps } from "./type"
+import type { NewsReportItemProps } from "./type"
 import { Star as StarIcon } from "lucide-vue-next"
 import { getStarForScore } from "./utils"
 import { computed } from "vue";

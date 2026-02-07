@@ -1,16 +1,21 @@
 <script setup lang="ts">
-import NewsReportItem from "./item/index.vue"
+import NewsReportItem from "./item/index.vue";
 import type { NewsReportContainerProps } from "./type";
 defineOptions({
   name: "NewsReportContainer",
-})
-const props = defineProps<NewsReportContainerProps>()
+});
+const props = defineProps<NewsReportContainerProps>();
 </script>
 <template>
   <div class="news-report-container">
     <div class="news-report-scroll-area">
-      <NewsReportItem :selected-item="props.selectedItem" v-for="item in props.items" :key="item.id" :item="item"
-        :on-select="props.onSelect" />
+      <NewsReportItem
+        :selected-item="props.selectedItem"
+        v-for="item in props.items"
+        :key="item.id"
+        :item="item"
+        :on-select="props.onSelect"
+      />
     </div>
   </div>
 </template>

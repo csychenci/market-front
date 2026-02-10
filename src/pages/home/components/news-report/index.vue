@@ -11,7 +11,6 @@ defineOptions({
 const selectedItem = ref<NewsReportItemType | null>(null)
 
 const handleSelect = (item: NewsReportItemType) => {
-  console.log("select-item", item)
   selectedItem.value = item
 }
 

@@ -1,44 +1,53 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, computed } from "vue";
 import type { NewsReportListProps } from "./type";
 import NewsReportFilter from "./components/filter/index.vue";
 import NewsReportContainer from "./components/container/index.vue";
+import NewsReportPagination from "./components/pagination/index.vue";
 import type { NewsReportItemType } from "@/pages/home/components/news-report/components/list/components/container/item/type";
+import { getNewsList } from "@/api/news";
 
 defineOptions({ name: "NewsReportList" });
 
 const props = defineProps<NewsReportListProps>();
+const newsList = ref<NewsReportItemType[]>([]);
+const newsTotal = ref<number>(0);
+const currentPage = ref(1);
+const pageSize = 10;
 
-const newsList = ref<NewsReportItemType[]>([
-  {
-    id: 1,
-    title: "对俄实施禁运和价格上限，中国和印度已成为俄罗斯原油的主要买家",
-    tags: ["报告", "新闻"],
-    content:
-      "在西方对俄罗斯石油实施制裁以及最近因俄乌战争实施禁运和价格上限的情况下，中国和印度已成为俄罗斯原油的主要买家。政府数据显示，1月份印度的俄罗斯原油进口量攀升至创纪录的140万桶/日，比去年12月份增长9.20%，占印度原油总进口量的约27%。五位知情人士称，中国商务部已会见了独立炼油厂，讨论他们与俄罗斯的交易，进口俄罗斯产品已为中国买家节省了数十亿美元。",
-    date: "2025-11-12 12:00:00",
-    score: 80,
-  },
-  {
-    id: 2,
-    title:
-      "1111111对俄实施禁运和价格上限，中国和印度已成为俄罗斯原油的主要买家",
-    tags: ["报告", "新闻"],
-    content:
-      "11111111在西方对俄罗斯石油实施制裁以及最近因俄乌战争实施禁运和价格上限的情况下，中国和印度已成为俄罗斯原油的主要买家。政府数据显示，1月份印度的俄罗斯原油进口量攀升至创纪录的140万桶/日，比去年12月份增长9.20%，占印度原油总进口量的约27%。五位知情人士称，中国商务部已会见了独立炼油厂，讨论他们与俄罗斯的交易，进口俄罗斯产品已为中国买家节省了数十亿美元。",
-    date: "2025-11-12 12:00:00",
-    score: 70,
-  },
-]);
+onMounted(async () => {
+  try {
+    newsList.value = await getNewsList();
+    newsTotal.value = newsList.value.length;
+    console.log("获取成功", newsList.value);
+  } catch (error) {
+    console.error("获取新闻列表失败:", error);
+  }
+});
+
+const pagedNewsList = computed(() => {
+  const start = (currentPage.value - 1) * pageSize
+  const end = start + pageSize
+  return newsList.value.slice(start, end)
+})
 </script>
 
 <template>
   <div class="news-report-list">
     <NewsReportFilter />
     <NewsReportContainer
-      :selected-item="props.selectedItem"
-      :items="newsList"
+      :selected-item="selectedItem"
+      :items="pagedNewsList"
       :on-select="props.onSelect"
+    />
+    <NewsReportPagination
+      :total="newsTotal"
+      @page-change="
+        (page) => {
+          currentPage = page;
+
+        }
+      "
     />
   </div>
 </template>

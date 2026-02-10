@@ -3,7 +3,9 @@ import './styles/main.less'
 import App from './App.vue'
 import router from './router'
 import pinia from './store'
-
+if (import.meta.env.DEV) {
+    import("./mock");
+  }
 const app = createApp(App)
 
 app.use(pinia)

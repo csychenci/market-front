@@ -1,6 +1,6 @@
 import type { NewsReportItemType } from "./components/container/item/type"
 
 export type NewsReportListProps = {
-  selectedItem: NewsReportItemType
+  selectedItem: NewsReportItemType | null
   onSelect: (item: NewsReportItemType) => void
 }

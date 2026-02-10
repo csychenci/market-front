@@ -14,6 +14,7 @@ declare module 'vue' {
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElOption: typeof import('element-plus/es')['ElOption']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     MarketCard: typeof import('./src/components/market-card/index.vue')['default']
     MarketView: typeof import('./src/components/market-view/index.vue')['default']

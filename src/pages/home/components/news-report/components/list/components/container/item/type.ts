@@ -9,6 +9,6 @@ export type NewsReportItemType = {
 
 export interface NewsReportItemProps {
   item: NewsReportItemType
-  selectedItem: NewsReportItemType
+  selectedItem: NewsReportItemType | null
   onSelect: (item: NewsReportItemType) => void
 }

@@ -1,11 +1,30 @@
 .news-report-container {
-  flex: 1;
-  overflow: hidden auto;
+  height: 1000px;
+  display: flex;
+  overflow: hidden;
   padding: 8px 6px;
   background-color: #e7e7e7;
+
   .news-report-scroll-area {
+    flex: 1;            
+    min-height: 0;      
+    overflow-y: auto;
+
     display: flex;
     flex-direction: column;
     gap: 6px;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #999;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
   }
 }

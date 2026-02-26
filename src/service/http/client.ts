@@ -14,7 +14,7 @@ declare module "axios" {
 
 export function createHttpClient(): AxiosInstance {
   const client = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL ?? "",
+    baseURL: '/api',  // 通过Vite代理
     timeout: 15000,
   });
 

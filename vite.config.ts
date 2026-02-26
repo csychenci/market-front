@@ -21,12 +21,14 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:7001', // Egg.js default port
+        target: 'http://127.0.0.1:7001', 
         changeOrigin: true,
+        secure: false,
       },
       '/socket.io': {
-        target: 'http://localhost:7001',
+        target: 'http://127.0.0.1:7001',
         ws: true,
+        changeOrigin: true,
       },
     },
   },

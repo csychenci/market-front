@@ -10,6 +10,12 @@ export const homeRoutes = [
     component: () => import("@/pages/home/components/news-report/index.vue"),
   },
   {
+    path: "publish-news",
+    name: "publish-news",
+    label: "发布新闻",
+    component: () => import("@/pages/home/components/publish-news/index.vue"),
+  },
+  {
     path: "market-analysis",
     name: "market-analysis",
     label: "市场分析",

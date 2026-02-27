@@ -7,6 +7,10 @@
   .news-report-filter-item {
     display: flex;
     gap: 10px;
+    &.second {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 50px;
+    }
     .news-report-filter--search {
       width: 240px;
       & > .el-input__wrapper {
@@ -19,6 +23,9 @@
           --el-input-inner-height: 18px;
         }
       }
+    }
+    .news-report-filter__reset {
+      font-size: 12px;
     }
     .news-report-filter--date {
       // height: 30px;

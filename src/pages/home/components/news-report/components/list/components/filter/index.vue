@@ -34,17 +34,17 @@ function resetFilter() {
         <el-option v-for="item in dataOptions" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
     </div>
-    <div class="news-report-filter-item">
-      <el-select v-model="typeMode" placeholder="类型: 全部" style="width: 240px">
+    <div class="news-report-filter-item second">
+      <el-select v-model="typeMode" placeholder="类型: 全部">
         <el-option v-for="item in typeOptions" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
-      <el-select v-model="sourceMode" placeholder="数据源: 全部" style="width: 240px">
+      <el-select v-model="sourceMode" placeholder="数据源: 全部">
         <el-option v-for="item in sourceOptions" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
-      <el-select v-model="motionMode" placeholder="数据源: 全部" style="width: 240px">
+      <el-select v-model="motionMode" placeholder="数据源: 全部">
         <el-option v-for="item in motionOptions" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
-      <div @click="resetFilter">清空筛选</div>
+      <span class="news-report-filter__reset" @click="resetFilter">清空筛选</span>
     </div>
   </div>
 </template>

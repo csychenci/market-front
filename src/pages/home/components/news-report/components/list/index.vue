@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 import type { NewsReportListProps } from "./type";
 import NewsReportFilter from "./components/filter/index.vue";
 import NewsReportContainer from "./components/container/index.vue";
@@ -15,21 +15,18 @@ const newsTotal = ref<number>(0);
 const currentPage = ref(1);
 const pageSize = 10;
 
-onMounted(async () => {
+const fetchNews = async (page: number) => {
   try {
-    newsList.value = await getNewsList();
-    newsTotal.value = newsList.value.length;
-    console.log("获取成功", newsList.value);
+    const result = await getNewsList({ page, pageSize });
+    newsList.value = result.list;
+    newsTotal.value = result.total;
+    console.log(result);
   } catch (error) {
     console.error("获取新闻列表失败:", error);
   }
-});
+};
 
-const pagedNewsList = computed(() => {
-  const start = (currentPage.value - 1) * pageSize
-  const end = start + pageSize
-  return newsList.value.slice(start, end)
-})
+onMounted(() => fetchNews(1));
 </script>
 
 <template>
@@ -37,17 +34,12 @@ const pagedNewsList = computed(() => {
     <NewsReportFilter />
     <NewsReportContainer
       :selected-item="selectedItem"
-      :items="pagedNewsList"
+      :items="newsList"
       :on-select="props.onSelect"
     />
     <NewsReportPagination
       :total="newsTotal"
-      @page-change="
-        (page) => {
-          currentPage = page;
-
-        }
-      "
+      @page-change="(page) => { currentPage = page; fetchNews(page); }"
     />
   </div>
 </template>

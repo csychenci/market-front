@@ -31,7 +31,7 @@ const starCount = computed(() => getStarForScore(item.score ?? 0));
     </ul>
     <p class="news-report-item__content">{{ item.content }}</p>
     <div class="news-report-item__actions">
-      <span>{{ dayjs(item.date)?.format("YYYY-MM-DD") }}</span>
+      <span>{{ dayjs(item.publishTime)?.format("YYYY-MM-DD") }}</span>
       <div class="news-report-item__scores">
         <span>{{ starCount >= 4 ? "看涨" : "看跌" }}</span>
         <ul class="news-report-item__score__list">

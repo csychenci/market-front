@@ -1,5 +1,5 @@
 import { request } from "@/service";
-import type { NewsReportItemType } from "@/types/news";
+import type { NewsReportItemType } from "@/pages/home/components/news-report/components/list/components/container/item/type";
 
 export interface ApiResponse<T = any> {
   code: number;
@@ -8,26 +8,36 @@ export interface ApiResponse<T = any> {
   data: T;
 }
 
-export function getNewsList(params?: { 
-  keyword?: string; 
+export interface NewsListResult {
+  list: NewsReportItemType[];
+  total: number;
+}
+
+export function getNewsList(params?: {
+  keyword?: string;
   tag?: string;
   page?: number;
   pageSize?: number;
-}): Promise<NewsReportItemType[]> {
-  return request.get<any, ApiResponse<NewsReportItemType[]>>("/news", {
-    params,
+}): Promise<NewsListResult> {
+  return request.get<any, ApiResponse<NewsListResult>>("/news", {
+    params: {
+      pageNum: params?.page ?? 1,
+      pageSize: params?.pageSize ?? 10,
+      keyword: params?.keyword,
+      tag: params?.tag,
+    },
     auth: false
   }).then(res => {
     if (res.code === 200 && res.data) {
-      if (Array.isArray(res.data)) {
-        return res.data;
-      }
       if (res.data.list && Array.isArray(res.data.list)) {
-        return res.data.list;
+        return res.data as NewsListResult;
+      }
+      if (Array.isArray(res.data)) {
+        return { list: res.data, total: res.data.length };
       }
     }
     console.warn('API返回格式异常:', res);
-    return [];
+    return { list: [], total: 0 };
   });
 }
 

@@ -13,7 +13,7 @@ const props = defineProps<{
           <h2 class="detail__title">{{ props.item.title }}</h2>
   
           <div class="detail__meta">
-            <span class="detail__date">{{ props.item.date }}</span>
+            <span class="detail__date">{{ props.item.publishTime }}</span>
             <div class="detail__tags">
               <span v-for="tag in props.item.tags" :key="tag" class="detail__tag">{{ tag }}</span>
             </div>

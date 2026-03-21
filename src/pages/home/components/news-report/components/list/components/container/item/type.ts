@@ -1,10 +1,16 @@
 export type NewsReportItemType = {
-  id: number
+  id: string;
   title: string;
-  tags: string[];
-  content: string;
-  date: string;
-  score: number;
+  content: string | null;
+  sourceUrl: string | null;
+  tags: string[] | null;
+  images: unknown;
+  summary: string | null;
+  viewpoints: unknown;
+  score: number | null;
+  publishTime: string;
+  createAt: string;
+  updateAt: string;
 }
 
 export interface NewsReportItemProps {

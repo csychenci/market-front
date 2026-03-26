@@ -25,8 +25,7 @@ export function getNewsList(params?: {
       pageSize: params?.pageSize ?? 10,
       keyword: params?.keyword,
       tag: params?.tag,
-    },
-    auth: false
+    }
   }).then(res => {
     if (res.code === 200 && res.data) {
       if (res.data.list && Array.isArray(res.data.list)) {

@@ -1,6 +1,6 @@
 import axios from "axios"
 import type { AxiosInstance } from "axios"
-import { getToken, clearToken } from "./auth";
+import { getToken, clearToken, setToken } from "./auth";
 import { normalizeAxiosError } from "./error";
 import router from "@/router"; // 你的路由实例路径自己对齐
 
@@ -9,32 +9,37 @@ type RequestConfigExt = {
 };
 
 declare module "axios" {
-  export interface AxiosRequestConfig extends RequestConfigExt {}
+  export interface AxiosRequestConfig extends RequestConfigExt { }
 }
 
 export function createHttpClient(): AxiosInstance {
   const client = axios.create({
-    baseURL: '/api',  // 通过Vite代理
+    baseURL: "/api",
     timeout: 15000,
   });
 
   // 请求拦截：按需添加 token
   client.interceptors.request.use((config) => {
-    if (config.auth) {
-      const token = getToken();
-      if (token) {
-        config.headers = config.headers ?? {};
-        // 常见：Bearer token；如果你们后端不是Bearer，就改这里
-        config.headers.Authorization = `Bearer ${token}`;
-      }
+    console.log("config", config)
+    const token = getToken();
+    debugger
+    if (token) {
+      config.headers.Authorization = `Bearer ` + token;
     }
     return config;
   });
 
   // 响应拦截：统一解包 + 统一错误处理
   client.interceptors.response.use(
-    (res) => res.data,
+    (res) => {
+      console.log("res", res);
+      if (res.config.url == "/user/login" && res.status === 200) {
+        setToken(res.data.data.token)
+      }
+      return res.data
+    },
     async (err) => {
+      debugger
       const apiErr = normalizeAxiosError(err);
 
       // 你们定的是 406 表示 token 过期，就在这里统一处理

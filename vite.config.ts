@@ -19,11 +19,18 @@ export default defineConfig({
     },
   },
   server: {
+    host: "0.0.0.0",
+    port: 5173,
+    open: true,
+    cors: true,
+    strictPort: false,
+    hmr: {
+      overlay: false,
+    },
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:7001', 
+        target: 'http://localhost:7001', 
         changeOrigin: true,
-        secure: false,
       },
       '/socket.io': {
         target: 'http://127.0.0.1:7001',

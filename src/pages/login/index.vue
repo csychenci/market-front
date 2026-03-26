@@ -1,19 +1,27 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { request } from '@/service'
 
 const router = useRouter()
-const username = ref('')
-const password = ref('')
+const userForm = ref<{ username: string; password: string }>({
+  username: "xiaoming",
+  password: "xiaoming123456"
+})
 const isLoading = ref(false)
 
 const handleLogin = async () => {
-  isLoading.value = true
+  // isLoading.value = true
+  const result = await request({
+    method: "POST",
+    url: "/user/login",
+    data: userForm.value
+  })
   // 模拟登录延迟
-  setTimeout(() => {
-    isLoading.value = false
-    router.push('/')
-  }, 1000)
+  // setTimeout(() => {
+  //   isLoading.value = false
+  //   router.push('/')
+  // }, 1000)
 }
 </script>
 
@@ -32,10 +40,10 @@ const handleLogin = async () => {
         <div>
           <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">用户名 / 邮箱</label>
           <input 
-            v-model="username"
+v-model="userForm.username"
             type="text" 
             placeholder="admin"
-            class="w-full bg-gray-900 border border-border rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+            class="w-full bg-gray-900 text-white border border-border rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
             required
           />
         </div>
@@ -43,10 +51,10 @@ const handleLogin = async () => {
         <div>
           <label class="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">密码</label>
           <input 
-            v-model="password"
+v-model="userForm.password"
             type="password" 
             placeholder="••••••••"
-            class="w-full bg-gray-900 border border-border rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+            class="w-full bg-gray-900 border text-white border-border rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
             required
           />
         </div>

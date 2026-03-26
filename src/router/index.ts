@@ -14,7 +14,7 @@ const router = createRouter({
       name: 'login',
       component: () => import('@/pages/login/index.vue'),
       
-    },
+    }
     // More routes for orders, assets, etc.
   ],
 })

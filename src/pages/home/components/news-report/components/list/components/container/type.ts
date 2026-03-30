@@ -4,4 +4,5 @@ export type NewsReportContainerProps = {
   selectedItem: NewsReportItemType | null
   items: NewsReportItemType[]
   onSelect: (item: NewsReportItemType) => void
+  onFavorite?: (item: NewsReportItemType) => void
 }

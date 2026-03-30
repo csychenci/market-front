@@ -26,8 +26,18 @@
     .news-report-item__star {
       width: 14px;
       height: 14px;
-      fill: #ff8632;
-      stroke: #ff8632;
+      fill: #d1d5db;
+      stroke: #d1d5db;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      &:hover {
+        fill: #ff8632;
+        stroke: #ff8632;
+      }
+      &.favorited {
+        fill: #ff8632;
+        stroke: #ff8632;
+      }
     }
   }
   .news-report-item__tags {
@@ -49,6 +59,10 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .news-report-item__actions {
     display: flex;

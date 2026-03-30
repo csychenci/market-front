@@ -40,6 +40,10 @@ export function getNewsList(params?: {
   });
 }
 
+export function getNewsDetail(id: string): Promise<ApiResponse<NewsReportItemType>> {
+  return request.get<any, ApiResponse<NewsReportItemType>>(`/news/${id}`);
+}
+
 export interface CreateNewsParams {
   title: string;
   content?: string;
@@ -55,5 +59,26 @@ export interface CreateNewsParams {
 export function createNews(data: CreateNewsParams): Promise<ApiResponse<NewsReportItemType>> {
   return request.post<any, ApiResponse<NewsReportItemType>>("/news", data, {
     auth: false
+  });
+}
+
+export function toggleFavorite(newsId: string): Promise<ApiResponse<{ favorited: boolean }>> {
+  return request.post<any, ApiResponse<{ favorited: boolean }>>(`/news/${newsId}/favorite`);
+}
+
+export function getFavoriteNews(params?: {
+  page?: number;
+  pageSize?: number;
+}): Promise<NewsListResult> {
+  return request.get<any, ApiResponse<NewsListResult>>("/news/favorites", {
+    params: {
+      pageNum: params?.page ?? 1,
+      pageSize: params?.pageSize ?? 10,
+    }
+  }).then(res => {
+    if (res.code === 200 && res.data) {
+      return res.data as NewsListResult;
+    }
+    return { list: [], total: 0 };
   });
 }

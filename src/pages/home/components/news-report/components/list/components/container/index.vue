@@ -15,6 +15,7 @@ const props = defineProps<NewsReportContainerProps>();
         :key="item.id"
         :item="item"
         :on-select="props.onSelect"
+        :on-favorite="props.onFavorite"
       />
     </div>
   </div>

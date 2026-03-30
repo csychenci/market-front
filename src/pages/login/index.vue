@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { request } from '@/service'
 
 const router = useRouter()
+const route = useRoute()
 const userForm = ref<{ username: string; password: string }>({
   username: "xiaoming",
   password: "xiaoming123456"
@@ -11,17 +12,19 @@ const userForm = ref<{ username: string; password: string }>({
 const isLoading = ref(false)
 
 const handleLogin = async () => {
-  // isLoading.value = true
-  const result = await request({
-    method: "POST",
-    url: "/user/login",
-    data: userForm.value
-  })
-  // 模拟登录延迟
-  // setTimeout(() => {
-  //   isLoading.value = false
-  //   router.push('/')
-  // }, 1000)
+  isLoading.value = true
+  try {
+    await request({
+      method: "POST",
+      url: "/user/login",
+      data: userForm.value
+    })
+    // 登录成功后跳转到原页面或首页
+    const redirect = route.query.redirect as string
+    router.push(redirect || '/')
+  } finally {
+    isLoading.value = false
+  }
 }
 </script>
 

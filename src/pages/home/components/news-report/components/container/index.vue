@@ -8,7 +8,7 @@ const props = defineProps<NewsReportContainerProps>()
 <template>
   <div class="news-report-container">
     <div class="news-report-scroll-area">
-      <NewsReportDetail :item="props.selectedItem" />
+      <NewsReportDetail :item="props.selectedItem" :is-loading="props.isLoading" />
     </div>
   </div>
 </template>

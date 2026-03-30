@@ -22,7 +22,6 @@ export function createHttpClient(): AxiosInstance {
   client.interceptors.request.use((config) => {
     console.log("config", config)
     const token = getToken();
-    debugger
     if (token) {
       config.headers.Authorization = `Bearer ` + token;
     }
@@ -39,7 +38,6 @@ export function createHttpClient(): AxiosInstance {
       return res.data
     },
     async (err) => {
-      debugger
       const apiErr = normalizeAxiosError(err);
 
       // 你们定的是 406 表示 token 过期，就在这里统一处理

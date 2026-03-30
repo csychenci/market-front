@@ -5,7 +5,7 @@ import NewsReportFilter from "./components/filter/index.vue";
 import NewsReportContainer from "./components/container/index.vue";
 import NewsReportPagination from "./components/pagination/index.vue";
 import type { NewsReportItemType } from "@/pages/home/components/news-report/components/list/components/container/item/type";
-import { getNewsList } from "@/api/news";
+import { getNewsList, toggleFavorite } from "@/api/news";
 
 defineOptions({ name: "NewsReportList" });
 
@@ -26,6 +26,18 @@ const fetchNews = async (page: number) => {
   }
 };
 
+const handleFavorite = async (item: NewsReportItemType) => {
+  try {
+    const result = await toggleFavorite(item.id);
+    const index = newsList.value.findIndex(n => n.id === item.id);
+    if (index !== -1) {
+      newsList.value[index] = { ...newsList.value[index], isFavorited: result.data.favorited };
+    }
+  } catch (error) {
+    console.error("收藏操作失败:", error);
+  }
+};
+
 onMounted(() => fetchNews(1));
 </script>
 
@@ -36,6 +48,7 @@ onMounted(() => fetchNews(1));
       :selected-item="selectedItem"
       :items="newsList"
       :on-select="props.onSelect"
+      :on-favorite="handleFavorite"
     />
     <NewsReportPagination
       :total="newsTotal"

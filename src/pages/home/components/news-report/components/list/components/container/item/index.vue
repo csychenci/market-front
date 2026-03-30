@@ -8,8 +8,13 @@ import { computed } from "vue";
 defineOptions({
   name: "NewsReportItem",
 });
-const { item, selectedItem, onSelect } = defineProps<NewsReportItemProps>();
+const { item, selectedItem, onSelect, onFavorite } = defineProps<NewsReportItemProps>();
 const starCount = computed(() => getStarForScore(item.score ?? 0));
+
+const handleFavoriteClick = (e: Event) => {
+  e.stopPropagation();
+  onFavorite?.(item);
+};
 </script>
 <template>
   <div
@@ -22,7 +27,10 @@ const starCount = computed(() => getStarForScore(item.score ?? 0));
   >
     <div class="news-report-item__header">
       <span class="news-report-item__title">{{ item.title }}</span>
-      <StarIcon class="news-report-item__star" />
+      <StarIcon
+        :class="['news-report-item__star', item.isFavorited && 'favorited']"
+        @click="handleFavoriteClick"
+      />
     </div>
     <ul class="news-report-item__tags">
       <li v-for="(tag, tagIndex) in item.tags" :key="tagIndex">

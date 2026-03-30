@@ -11,10 +11,12 @@ export type NewsReportItemType = {
   publishTime: string;
   createAt: string;
   updateAt: string;
+  isFavorited?: boolean;
 }
 
 export interface NewsReportItemProps {
   item: NewsReportItemType
   selectedItem: NewsReportItemType | null
   onSelect: (item: NewsReportItemType) => void
+  onFavorite?: (item: NewsReportItemType) => void
 }
